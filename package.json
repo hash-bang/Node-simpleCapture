@@ -1,0 +1,26 @@
+{
+	"name": "simpleCapture",
+	"version": "0.1.0",
+	"description": "Extremely simple RegExp style string captures",
+	"main": "index.js",
+	"scripts": {
+		"test": "node test.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/hash-bang/Node-simpleCapture"
+	},
+	"keywords": [
+		"regexp",
+		"regexps",
+		"regular expressions",
+		"regular expression",
+		"capture",
+		"string",
+		"strings",
+		"string capture",
+		"group capture"
+	],
+	"author": "Matt Carter <m@ttcarter.com>",
+	"license": "MIT"
+}
