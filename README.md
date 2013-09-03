@@ -31,3 +31,12 @@ Another simple example, this time using simple URL templating:
 	var $result = simpleCapture($template, $string);
 
 	console.log($result); // Output: {controller: 'foo', function: 'bar', arg: 'baz'}
+
+
+You can also specify defaults that should always be returned even if the rest of the string doesnt match:
+
+	var $template = '/[controller]/[function]/[arg!hello world]';
+	var $string = 'FAIL FAIL FAIL';
+	var $result = simpleCapture($template, $string);
+
+	console.log($result); // Output: {arg: 'hello world'}

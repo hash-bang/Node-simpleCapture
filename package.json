@@ -1,6 +1,6 @@
 {
 	"name": "simple-capture",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Extremely simple RegExp style string captures",
 	"main": "index.js",
 	"scripts": {
