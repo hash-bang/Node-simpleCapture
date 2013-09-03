@@ -2,21 +2,26 @@
 * Captures portions of a string similar to a simplified RegExp
 * Examples:
 *
-*	/[uno]/[does]/[tres] with '/foo/bar/baz' => ['foo', 'bar', 'baz']
+*	/[one]/[two]/[three] with '/foo/bar/baz' => [one: 'foo', two: 'bar', three: 'baz']
+*	/[one]/[two]/[three!trois] with 'nope' (i.e. will never work) => [three: 'trois']
 *
 * @param string template the template string to capture
 * @param string string The string to examine
-* @return object|null The captured string objects or nothing
+* @return object The captured string objects (empty hash if nothing matched and there were no defaults)
 */
 module.exports = function (template, string) {
 	var reStr = template
 		.replace(/([\?\|\*])/, '\\$1'); // Escape weird RegExp characters
 
 	var captures = [];
+	var defaults = {};
 	var match;
-	var re = /\[(.*?)\]/g;
-	while (match = re.exec(reStr))
+	var re = /\[(.*?)(!(.*?))?\]/g;
+	while (match = re.exec(reStr)) {
 		captures.push(match);
+		if (match[3])
+			defaults[match[1]] = match[3];
+	}
 
 	for (var c = captures.length - 1; c > -1; c--) {
 		// Splice the reExp so that we capture each item (non-greedy if its not the last item)
@@ -27,7 +32,7 @@ module.exports = function (template, string) {
 	var re = new RegExp(reStr); // Compile newly mangled RegExp
 	var found = re.exec(string); // Run on the string target
 	if (!found) // No matches all all
-		return;
+		return defaults;
 
 	var out = {};
 	for (var i in captures)

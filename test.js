@@ -16,4 +16,19 @@ assert.deepEqual(
 	{one: 'foo', two: 'bar', three: 'baz'}
 );
 
+assert.deepEqual(
+	simpleCapture('/[one!un]/[two!deux]/[three!trois]', '/foo/bar/baz'),
+	{one: 'foo', two: 'bar', three: 'baz'}
+);
+
+assert.deepEqual(
+	simpleCapture('/[one!un]/[two!deux]/[three!trois]', 'nope'),
+	{one: 'un', two: 'deux', three: 'trois'}
+);
+
+assert.deepEqual(
+	simpleCapture('/[one]/[two]/[three]', 'nope'),
+	{}
+);
+
 console.log('OK!');
